@@ -1,0 +1,23 @@
+@font-face {
+    font-family: sanomat;
+    src: url('../public/fonts/sanomat/sanoMed.otf');
+}
+@font-face {
+    font-family: sanomatThin;
+    src: url('../public/fonts/sanomat/reg.otf');
+}
+
+.h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.indvidialList{
+    padding: 5px;
+    margin: 5px;
+    font-family: sanomatThin;
+}
+
+
+.cds--accordion__title{
+    font-family: sanomat; 
+}

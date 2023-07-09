@@ -1,0 +1,21 @@
+
+@use '@carbon/react';
+@use '@carbon/react/scss/zone';
+@use '@carbon/layout';
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: local("../assets/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Bold.woff") format("woff");
+}
+
+.cds--content {
+    margin-top: 3rem;
+  }
+
+
+.centerh1{
+  text-align: center;
+  font-family: 'IBM Plex Mono', sans-serif;
+ 
+  margin-bottom: layout.$spacing-05;
+}

@@ -1,0 +1,22 @@
+@use '@carbon/layout';
+
+@font-face {
+    font-family: vistaMedium;
+    src: url('../public/fonts/vista/VistaSansNarOT-Medium.ttf');
+}
+
+@font-face {
+    font-family: matrix;
+    src: url('../public/fonts/mrEaves/MrsEavesRoman.ttf');
+}
+
+
+.title{
+    font-size: 35px;
+    font-family: vistaMedium;
+}
+
+.mainTitleHeader{
+    font-size: larger;
+    font-family: matrix;
+}

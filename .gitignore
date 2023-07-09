@@ -1,0 +1,5 @@
+# Ignore node_modules and dist folders in any subdirectory
+**/node_modules/
+**/dist/
+**/~@ibm/
+**/fonts/
