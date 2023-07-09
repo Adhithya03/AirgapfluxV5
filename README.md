@@ -1,24 +1,10 @@
 # AirgapfluxV5
 This is the source code for [Airgapflux.in](https://airgapflux.in), can be found [Here](https://github.com/Adhithya03/AirgapfluxV5)
 
-
-# Project Technical Details
-
-## How website search works?
-
-![searchWorking](searchWorking.jpg)
-
 ## Goal
 The aim of the website is to teach electrical engineering concepts in a way that makes students and engineers love the subject.
 
-## Hosting
-The website is hosted on Hostinger.in for two years and the domain name is registered on godaddy.com for three years. The total cost so far [9-8-2023] is about $100.
 
-## Front END
-The UI is based on IBM's **Carbon Design System** and uses React JSX with Vite as the package bundler.
-
-## Backend
-The backend is built with PHP, Algolia for search functionality and MYSQL for database management.
 
 ### Credits
 
@@ -41,6 +27,21 @@ https://www2.eecs.berkeley.edu/Faculty/Homepages/vonmeier.html
 https://www.linkedin.com/in/rama-reddy-4297b626b/
 
 
+
+# Project Technical Details
+
+## How website search works?
+
+![searchWorking](searchWorking.jpg)
+
+## Hosting
+The website is hosted on Hostinger.in for two years and the domain name is registered on godaddy.com for three years. The total cost so far [9-8-2023] is about $100.
+
+## Front END
+The UI is based on IBM's **Carbon Design System** and uses React JSX with Vite as the package bundler.
+
+## Backend
+The backend is built with PHP, Algolia for search functionality and MYSQL for database management.
 
 # For devs and nerds
 
