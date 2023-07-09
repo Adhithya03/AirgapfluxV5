@@ -28,3 +28,6 @@ https://www2.eecs.berkeley.edu/Faculty/Homepages/vonmeier.html
 
 - Dr. **Rama Reddy**, my professor for "Electrical Machine", "Power Electronics" and "Solid State Drives" during my B.E. EEE.
 https://www.linkedin.com/in/rama-reddy-4297b626b/
+
+
+## Project structure
