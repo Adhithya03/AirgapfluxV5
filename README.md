@@ -2,7 +2,7 @@
 This is the source code for [Airgapflux.in](https://airgapflux.in), can be found [Here](https://github.com/Adhithya03/AirgapfluxV5)
 
 ## Goal
-The aim of the website is to teach electrical engineering concepts in a way that makes students and engineers love the subject.
+The aim of the website is to curate electrical engineering resources which explain concepts in a way that makes students and engineers love the subject.
 
 
 
