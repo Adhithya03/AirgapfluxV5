@@ -3,6 +3,10 @@ This is the source code for https://airgapflux.in, a website that provides high-
 
 # Project Technical Details
 
+## How website search works?
+
+![searchWorking](searchWorking.jpg)
+
 ## Goal
 The aim of the website is to teach electrical engineering concepts in a way that makes students and engineers love the subject.
 
@@ -14,6 +18,12 @@ The UI is based on IBM's **Carbon Design System** and uses React JSX with Vite a
 
 ## Backend
 The backend is built with PHP, Algolia for search functionality and MYSQL for database management.
+
+### Credits
+
+As a hobby programmer, I am amazed by what I could achieve with the help of BING Chatbot (GPT-4) and ChatGPT for technical guidance and learning.
+
+I am very grateful to OpenAI for creating a new way of accessing knowledge like never before and to Microsoft for making it available at scale.
 
 ## Acknowledgements
 
@@ -30,4 +40,9 @@ https://www2.eecs.berkeley.edu/Faculty/Homepages/vonmeier.html
 https://www.linkedin.com/in/rama-reddy-4297b626b/
 
 
-## Project structure
+
+# For devs and nerds
+
+Core front end files are located responsible for what user is seeing on screen
+
+![projectStructure](projectStructure.jpg)
