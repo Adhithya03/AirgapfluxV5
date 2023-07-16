@@ -32,7 +32,7 @@ https://www.linkedin.com/in/rama-reddy-4297b626b/
 
 ## How website search works?
 
-![searchWorking](searchWorking.jpg)
+![searchWorking](https://raw.githubusercontent.com/Adhithya03/AirgapfluxV5/main/searchWorking.jpg)
 
 ## Hosting
 The website is hosted on Hostinger.in for two years and the domain name is registered on godaddy.com for three years. The total cost so far [9-8-2023] is about $100.
@@ -47,4 +47,4 @@ The backend is built with PHP, Algolia for search functionality and MYSQL for da
 
 Core front end files are located responsible for what user is seeing on screen
 
-![projectStructure](projectStructure.jpg)
+![projectStructure](https://raw.githubusercontent.com/Adhithya03/AirgapfluxV5/main/projectStructure.jpg)

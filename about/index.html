@@ -2,37 +2,120 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="./favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Airgapflux About</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airgapflux About Page</title>
+  <!-- Link to IBM Carbon CSS -->
+  <link rel="stylesheet" href="//unpkg.com/carbon-components@9.90.0/css/carbon-components.min.css">
+  <!-- Add custom CSS -->
   <style>
-    .help-text {
-      color: #070707;
-      font-weight: 600;
-      font-size: larger;
-      padding: 1rem;
-      margin: 1rem;
-      text-align: center;
-      border-radius: 0.5rem;
-      background-color: #ffffff;
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* Define a grid container for the main content */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-gap: 16px;
+      margin: 30px;
     }
 
-    .link {
-      color: #7e91e7;
-      text-decoration: underline;
+    /* Define a grid item for the image */
+    .img {
+      grid-column: span 12;
+      border: 5px solid black;
+      padding: 20px;
+      margin: 20px;
+    }
+
+    /* Define a grid item for the text */
+    .text {
+      grid-column: span 12;
+      /* Use flexbox to align items vertically */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Add some spacing between headings and paragraphs */
+    h1,
+    h2,
+    h3,
+    p,
+    li {
+      margin-bottom: 16px;
     }
   </style>
 </head>
 
-<body style="background-color: #fff;">
-  <div class="help-text">Project Technical details and Source code</div>
+<body>
+  <!-- Use a div with class container as the grid container -->
+  <div class="container">
+    <!-- Use a h1 element for the main title -->
+    <h1>About Airgapflux</h1>
+    <!-- Use a div with class text as the grid item for the text -->
+    <div class="text">
+      <!-- Use p elements for paragraphs -->
+      <p>This is the source code for <a target="_blank" href="https://airgapflux.in">Airgapflux.in</a>, can be found <a
+          href="https://github.com/Adhithya03/AirgapfluxV5">Here</a></p>
 
-  <script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FAdhithya03%2FAirgapfluxV5%2Fblob%2Fmain%2FREADME.md&style=default&type=markdown&showLineNumbers=on&showFullPath=on&showCopy=on"></script>
+      <h2>Goal</h2>
 
+      <p>The aim of the website is to curate electrical engineering resources which explain concepts in a way that makes
+        students and engineers love the subject.</p>
 
+      <h3>Credits</h3>
+
+      <p>As a hobby programmer, I am amazed by what I could achieve with the help of BING Chatbot (GPT-4) and ChatGPT
+        for technical guidance and learning.</p>
+
+      <p>I am very grateful to OpenAI for creating a new way of accessing knowledge like never before and to Microsoft
+        for making it available at scale.</p>
+
+      <h2>Acknowledgements</h2>
+
+      <p>I dedicate this website to some of the people who inspired me to pursue electrical engineering and to whom I am
+        very grateful:</p>
+
+      <!-- Use ul and li elements for lists -->
+      <ul>
+        <li>Prof. <strong>Alexandra von Meier</strong>, author of "A Conceptual Introduction to Power Systems" and
+          professor at UC Berkeley.
+          https://www2.eecs.berkeley.edu/Faculty/Homepages/vonmeier.html
+        </li>
+        <li><strong>Theodore Wildi</strong>, author of "Electrical Machines, Drives and Power Systems".</li>
+        <li><strong>S.K. Sahdev</strong>, author of "Electrical Machines (2017)".</li>
+        <li>Dr. <strong>Rama Reddy</strong>, my professor for "Electrical Machine", "Power Electronics" and "Solid State
+          Drives" during my B.E. EEE.
+          https://www.linkedin.com/in/rama-reddy-4297b626b/
+        </li>
+      </ul>
+
+      <h1>Project Technical Details</h1>
+
+      <h2>How website search works?</h2>
+      <!-- Use an img element with class img as the grid item for the image -->
+      <img class="img" width="500px" loading="eager"
+        src="https://raw.githubusercontent.com/Adhithya03/AirgapfluxV5/main/searchWorking.jpg" alt="">
+
+      <h2> Hosting </h2>
+
+      <p>The website is hosted on Hostinger.in for two years and the domain name is registered on godaddy.com for three
+        years. The total cost so far [9-8-2023] is about $100.</p>
+
+      <h2> Front END </h2>
+
+      <p>The UI is based on IBM's <strong>Carbon Design System</strong> and uses React JSX with Vite as the package
+        bundler.</p>
+
+      <h2> Backend </h2>
+      <p>The backend is built with PHP, Algolia for search functionality and MYSQL for database management.</p>
+
+      <h1>For devs and nerds</h1>
+
+      Core front end files are located responsible for what user is seeing on screen
+      <img class="img" width="500px" loading="eager"
+        src="https://raw.githubusercontent.com/Adhithya03/AirgapfluxV5/main/projectStructure.jpg" alt="">
+
+    </div>
+  </div>
 </body>
 
 </html>

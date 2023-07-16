@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switcher, Notification, UserAvatar ,Search,Explore,Add} from '@carbon/react/icons';
+import { Switcher, Notification, UserAvatar ,Search,Explore,Information} from '@carbon/react/icons';
 import { Link } from 'react-router-dom';
 import { Header, HeaderContainer, HeaderName, HeaderNavigation, HeaderMenuButton, HeaderMenuItem, HeaderGlobalBar, HeaderGlobalAction, SkipToContent, SideNav, SideNavItems, HeaderSideNavItems, } from '@carbon/react';
 
@@ -29,17 +29,11 @@ const NavHeader = () => (
           </HeaderMenuItem>
         </HeaderNavigation>
 
-        <HeaderNavigation aria-label="Add resource">
-          <HeaderMenuItem element={Link} to="https://add.airgapflux.in">
-            Add Resource
-          </HeaderMenuItem>
-        </HeaderNavigation>
-
-        {/* <HeaderNavigation aria-label="About">
+        <HeaderNavigation aria-label="About">
           <HeaderMenuItem element={Link} to="https://about.airgapflux.in">
             About
           </HeaderMenuItem>
-        </HeaderNavigation> */}
+        </HeaderNavigation>
 
         <SideNav
           aria-label="Side navigation"
@@ -48,13 +42,21 @@ const NavHeader = () => (
         >
           <SideNavItems>
             <HeaderSideNavItems>
-              <HeaderMenuItem element={Link} to="https://airgapflux.in"><Search size='15'/>  Search</HeaderMenuItem>
-              <HeaderMenuItem element={Link} to="https://explore.airgapflux.in"><Explore size='15'/>  Explore</HeaderMenuItem>
-              <HeaderMenuItem element={Link} to="https://add.airgapflux.in/"><Add size='15'/>  Add Resource</HeaderMenuItem>
+              <br />
+              <HeaderMenuItem element={Link} to="https://airgapflux.in"><Search size='14'/>  Search</HeaderMenuItem>
+              <br />
+
+
+              <HeaderMenuItem element={Link} to="https://explore.airgapflux.in"><Explore size='14'/>  Explore</HeaderMenuItem>
+              <br />
+
+              <HeaderMenuItem element={Link} to="https://about.airgapflux.in/"><Information size='14'/>  About</HeaderMenuItem>
               {/* <HeaderMenuItem element={Link} to="https://airgapflux.in/about/">About</HeaderMenuItem> */}
             </HeaderSideNavItems>
           </SideNavItems>
         </SideNav>
+
+
         {/* <HeaderGlobalBar>
           <HeaderGlobalAction aria-label="Notifications" tooltipAlignment="center">
             <Notification size={20} />
