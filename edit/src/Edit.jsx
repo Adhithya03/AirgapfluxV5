@@ -163,6 +163,7 @@ function RecordEditor() {
 
             {/* Use the notes state variable as the value prop and update it on change */}
             <TextArea
+            rows={10}
               labelText="Notes"
               id="notes"
               type="text"

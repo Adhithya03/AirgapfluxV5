@@ -11,12 +11,65 @@
 }
 
 
-.title{
+.title {
     font-size: 35px;
     font-family: vistaMedium;
 }
 
-.mainTitleHeader{
+.mainTitleHeader {
     font-size: larger;
     font-family: matrix;
 }
+
+/* Add this class to the image container */
+.image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    opacity: 0.8;
+}
+
+/* Add this class to the play icon */
+.play-icon {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    z-index: 1;
+}
+
+
+/* Add this media query for screens larger than 768px */
+@media (min-width: 768px) {
+
+    /* Add this class to the tile */
+    .tile {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-gap: 10px;
+        align-items: center;
+    }
+
+    /* Add this class to the title */
+    .title {
+        grid-column: 1 / 2;
+        text-align: left;
+    }
+
+    /* Add this class to the image container */
+    .image-container {
+        grid-column: 2 / 3;
+        justify-content: flex-start;
+    }
+}
+
+.image-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

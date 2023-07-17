@@ -1,27 +1,39 @@
-import React, { useState } from 'react';
-import { ClickableTile, DefinitionTooltip, Search, Button, SkeletonPlaceholder, SkeletonText } from '@carbon/react';
-import { Book, Laptop, LogoYoutube, Wikis, SearchLocate, InformationFilled } from '@carbon/icons-react';
-import { Grid, ExpandableTile, TileBelowTheFoldContent, Column } from '@carbon/react';
+import React, { useState, useEffect } from 'react';
+import { Book, Laptop, InformationFilled,LogoYoutube, Wikis, PlayFilled } from '@carbon/icons-react';
+import { DefinitionTooltip,ExpandableTile, TileBelowTheFoldContent, ClickableTile, Search, SkeletonPlaceholder } from '@carbon/react';
+import { createBrowserHistory } from "history";
 import ReactMarkdown from 'react-markdown'
 import './App.scss'
-
 
 function SearchAGP() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const history = createBrowserHistory(); // create a history object
 
-  const handleSearch = async () => {
+  useEffect(() => {
+    const location = history.location; // get the current URL from the history object
+    const params = new URLSearchParams(location.search); // parse the query string
+    const q = params.get('q'); // get the value of q parameter
+    if (q) {
+      setQuery(q); // set the query state
+      handleSearch(q); // call your search function
+    }
+  }, [location]); // this is the array of dependencies
+
+  const handleSearch = async (query) => {
     setLoading(true);
-    const response = await fetch(`https://api.airgapflux.in/fetch/index.php?s=${query}`);
+    history.push(`search?q=${query}`);
+    const response = await fetch(`https://api.airgapflux.in/fetch/index.php?s=${query}`); // use query instead of query state
     const data = await response.json();
     setResults(data);
     setLoading(false);
+
   };
 
 
   const renderResult = (result) => (
-    result["Category"] == "boks" ? (
+    result["Category"] == "books" ? (
       <ExpandableTile style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
         <p class='title' style={{ "margin-bottom": "10px" }}>
           {<Book size={'25'} style={{ marginRight: '10px' }} />}
@@ -58,33 +70,32 @@ function SearchAGP() {
 
     ) : !result.Resources.includes('youtube.com') ? (
 
-      <ClickableTile style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
-        <p class='title' style={{ "margin-bottom": "10px" }}>
-          {<Wikis size={'25'} style={{ marginRight: '10px' }} />}
+      <ClickableTile className="tile" style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
+        <p className='title' style={{ "margin-bottom": "10px" }}>
+          {result.Resources.includes('youtube.com') && <LogoYoutube size={'25'} style={{ marginRight: '10px' }} />}
           {result.TopicName}
         </p>
-
-
-
-        <img loading="lazy" src={`https://airgapflux.in/thumbnailcache/images/${result.id}.jpg`} alt="" style={{ maxWidth: "100%", height: "auto" }} />
       </ClickableTile>
-
 
 
     ) : (
       <>
-        {/* <DefinitionTooltip definition={`${result.id}`}>
+        <DefinitionTooltip definition={`${result.id}`}>
           <InformationFilled></InformationFilled>
-        </DefinitionTooltip> */}
-
-        <ClickableTile style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
-          <p class='title' style={{ "margin-bottom": "10px" }}>
-            {result.Resources.includes('youtube.com') && <LogoYoutube size={'25'} style={{ marginRight: '10px' }} />}
+        </DefinitionTooltip>
+        <ClickableTile className="tile" style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
+          <p className='title' style={{ "margin-bottom": "10px" }}>
+            {result.Resources.includes('youtube.com/watch?v=') && <LogoYoutube size={'25'} style={{ marginRight: '10px' }} />}
             {result.TopicName}
           </p>
-          <img loading="lazy" src={`https://airgapflux.in/thumbnailcache/images/${result.id}.jpg`} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-
+          <div className="image-container">
+            <div className="image-wrapper">
+              <img loading="lazy" src={`https://airgapflux.in/thumbnailcache/images/${result.id}.jpg`} alt="" style={{ maxWidth: "100%", height: "auto" }} />
+              <PlayFilled className="play-icon" />
+            </div>
+          </div>
         </ClickableTile>
+
       </>
     )
   );
@@ -100,7 +111,7 @@ function SearchAGP() {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            handleSearch();
+            handleSearch(query);
           }
         }}
       />
