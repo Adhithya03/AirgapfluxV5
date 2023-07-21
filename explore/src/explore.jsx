@@ -4,37 +4,12 @@ import { Book, LogoYoutube } from '@carbon/icons-react';
 import ReactMarkdown from 'react-markdown'
 
 const subjects = [
-    { Subject: "basc" },
-    { Subject: "oali" },
-    { Subject: "bect" },
-    { Subject: "coel" },
-    { Subject: "cosy" },
-    { Subject: "diel" },
-    { Subject: "doem" },
-    { Subject: "dsip" },
-    { Subject: "edac" },
-    { Subject: "emfi" },
-    { Subject: "embs" },
-    { Subject: "mach" },
-    { Subject: "fats" },
-    { Subject: "hevs" },
-    { Subject: "main" },
-    { Subject: "mpmc" },
-    { Subject: "phys" },
-    { Subject: "plsc" },
-    { Subject: "psop" },
-    { Subject: "poel" },
-    { Subject: "posy" },
-    { Subject: "prsw" },
-    { Subject: "rees" },
-    { Subject: "slsd" },
-    { Subject: "spem" },
-    { Subject: "tmdt" }
+    { Subject: "basc" },{ Subject: "oali" },{ Subject: "bect" },{ Subject: "coel" },{ Subject: "cosy" },{ Subject: "diel" },{ Subject: "doem" },{ Subject: "dsip" },{ Subject: "edac" },{ Subject: "emfi" },{ Subject: "embs" },{ Subject: "mach" },{ Subject: "fats" },{ Subject: "hevs" },{ Subject: "main" },{ Subject: "mpmc" },{ Subject: "meeg" },{ Subject: "phys" },{ Subject: "plsc" },{ Subject: "psop" },{ Subject: "poel" },{ Subject: "posy" },{ Subject: "prsw" },{ Subject: "rees" },{ Subject: "slsd" },{ Subject: "spem" },{ Subject: "tmdt" }
 ];
 
 
 const lookupTable = {
-    "oali": "Analog Electronics"
+     "oali": "Analog Electronics"
     , "basc": "Fundamentals"
     , "embs": "Embedded Systems"
     , "psop": "Power system operation"
@@ -50,12 +25,13 @@ const lookupTable = {
     , "edac": "Electronic Devices And Circuits"
     , "emfi": "Electromagnetic Fields"
     , "mach": "Electrical Machines"
-    , "main": "Measurements"
+    , "main": "Measurement and Instrumentation"
     , "mpmc": "Microprocessors"
+    , "meeg": "Mechanical Engineering"
     , "phys": "Physics"
-    , "plsc": "PLC And Scada"
+    , "plsc": "PLC and Scada"
     , "poel": "Power Electronics"
-    , "posy": "Power Systems"
+    , "posy": "Power Systems Analysis"
     , "prsw": "Protection And Switch Gear"
     , "slsd": "Solid State Drives"
     , "spem": "Special Machines"
@@ -91,7 +67,7 @@ const ExplorePage = () => {
     return (
         <>
             <Content>
-                <h1 class='h1'>Explore Our Resources</h1>
+                <h1 id='videos' class='h1'>Explore Our Resources</h1>
                 <br />
                 <br />
                 <h3 class='h3'><LogoYoutube size={20} /> Video Resources</h3>
@@ -124,7 +100,7 @@ const ExplorePage = () => {
                 <br />
                 <br />
                 <br />
-                <h3 class='h3'><Book size={20} />  Books suggested</h3>
+                <h3 id='books' class='h3'><Book size={20} />  Books suggested</h3>
                 <br />
                 <p class='note'>Note only author name is mentioned for books, you can search for the book in google/amazon/bookswagon to buy it.
                 <br />

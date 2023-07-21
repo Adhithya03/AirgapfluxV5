@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Book, Laptop, InformationFilled,LogoYoutube, Wikis, PlayFilled } from '@carbon/icons-react';
-import { DefinitionTooltip,ExpandableTile, TileBelowTheFoldContent, ClickableTile, Search, SkeletonPlaceholder } from '@carbon/react';
+import { Book, Laptop, LogoYoutube, Wikis, PlayFilled } from '@carbon/icons-react';
+import { ExpandableTile, TileBelowTheFoldContent, ClickableTile, Search, SkeletonPlaceholder } from '@carbon/react';
 import { createBrowserHistory } from "history";
 import ReactMarkdown from 'react-markdown'
 import './App.scss'
@@ -80,9 +80,6 @@ function SearchAGP() {
 
     ) : (
       <>
-        <DefinitionTooltip definition={`${result.id}`}>
-          <InformationFilled></InformationFilled>
-        </DefinitionTooltip>
         <ClickableTile className="tile" style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
           <p className='title' style={{ "margin-bottom": "10px" }}>
             {result.Resources.includes('youtube.com/watch?v=') && <LogoYoutube size={'25'} style={{ marginRight: '10px' }} />}

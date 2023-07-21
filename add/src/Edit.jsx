@@ -20,7 +20,7 @@ function getVideoId(resourcesLink) {
 
 const populateForm = async (id, setId, setTitle, setSubject, setConceptualRating, setType, setCategory, setNotes, setSummary, setResourcesLink, setLoading) => {
   setLoading(true);
-  const response = await fetch(`https://airgapflux.in/api/contribute/index.php?id=${id}`);
+  const response = await fetch(`https://api.airgapflux.in/contribute/index.php?id=${id}`);
   const data = await response.json();
 
   if (data.num_results > 0) {
@@ -64,7 +64,7 @@ const populateForm = async (id, setId, setTitle, setSubject, setConceptualRating
 
 const handleDeleteClick = async () => {
   setLoading(true);
-  const response = await fetch(`https://airgapflux.in/api/contribute/delete/index.php?id=${id}`);
+  const response = await fetch(`https://api.airgapflux.in/contribute/delete/index.php?id=${id}`);
   const data = await response.json();
   setLoading(false);
 };
