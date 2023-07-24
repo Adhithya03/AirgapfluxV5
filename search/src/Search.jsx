@@ -4,6 +4,35 @@ import { ExpandableTile, TileBelowTheFoldContent, ClickableTile, Search, Skeleto
 import { createBrowserHistory } from "history";
 import ReactMarkdown from 'react-markdown'
 import './App.scss'
+const lookupTable = {
+  "oali": "Analog Electronics"
+ , "basc": "Fundamentals"
+ , "embs": "Embedded Systems"
+ , "psop": "Power system operation"
+ , "fats": "Flexible AC Transmission Systems"
+ , "rees": "Renewable Energy Systems"
+ , "hevs": "Hybrid Electric Vehicles"
+ , "bect": "Circuit Theory"
+ , "coel": "Consumer Electronics"
+ , "cosy": "Control Systems"
+ , "diel": "Digital Electronics"
+ , "doem": "Design Of Electrical Machines"
+ , "dsip": "Digital Signal Processing"
+ , "edac": "Electronic Devices And Circuits"
+ , "emfi": "Electromagnetic Fields"
+ , "mach": "Electrical Machines"
+ , "main": "Measurement and Instrumentation"
+ , "mpmc": "Microprocessors"
+ , "meeg": "Mechanical Engineering"
+ , "phys": "Physics"
+ , "plsc": "PLC and Scada"
+ , "poel": "Power Electronics"
+ , "posy": "Power Systems Analysis"
+ , "prsw": "Protection And Switch Gear"
+ , "slsd": "Solid State Drives"
+ , "spem": "Special Machines"
+ , "tmdt": "Transmission And Distribution",
+};
 
 function SearchAGP() {
   const [query, setQuery] = useState('');
@@ -31,71 +60,151 @@ function SearchAGP() {
 
   };
 
-
-  const renderResult = (result) => (
-    result["Category"] == "books" ? (
-      <ExpandableTile style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
-        <p class='title' style={{ "margin-bottom": "10px" }}>
-          {<Book size={'25'} style={{ marginRight: '10px' }} />}
-          {result.TopicName}
+  // A function to render a tile for a resource based on its category and subject
+const renderResult = (resource) => {
+  // Render a tile for a book resource
+  if (resource["Category"] == "books") {
+    return (
+      <ExpandableTile
+        style={{
+          "margin-top": "10px",
+          "margin-bottom": "10px",
+          "max-width": "100%",
+        }}
+        key={resource.id}
+        href={resource.Resources}
+        target="_blank"
+      >
+        <p class="title" style={{ "margin-bottom": "10px" }}>
+          {<Book size={"25"} style={{ marginRight: "10px" }} />}
+          {resource.TopicName}
+        </p>
+        <p class="subject" style={{ "font-size": "small", "color": "#808080" }}>
+          {lookupTable[resource.Subject]}
         </p>
         <TileBelowTheFoldContent>
-          <ReactMarkdown>
-            {result.Notes}
-          </ReactMarkdown>
+          <ReactMarkdown>{resource.Notes}</ReactMarkdown>
         </TileBelowTheFoldContent>
       </ExpandableTile>
-    ) : result["Category"] == "simu" ? (
-      <ClickableTile style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
-        <p class='title' style={{ "margin-bottom": "10px" }}>
-          {<Laptop size={'25'} style={{ marginRight: '10px' }} />}
-          {result.TopicName}
-        </p>
+    );
+  }
 
+  // Render a tile for a simulation resource
+  if (resource["Category"] == "simu") {
+    return (
+      <ClickableTile
+        style={{
+          "margin-top": "10px",
+          "margin-bottom": "10px",
+          "max-width": "100%",
+        }}
+        key={resource.id}
+        href={resource.Resources}
+        target="_blank"
+      >
+        <p class="title" style={{ "margin-bottom": "10px" }}>
+          {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
+          {resource.TopicName}
+        </p>
+        <p class="subject" style={{ "font-size": "small", "color": "#808080" }}>
+          {lookupTable[resource.Subject]}
+        </p>
       </ClickableTile>
+    );
+  }
 
-    ) : result.Resources.length < 2 ? (
-      <ExpandableTile style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
-        <p class='title' style={{ "margin-bottom": "10px" }}>
-          {result.TopicName}
+  // Render a tile for a resource with only one link
+  if (resource.Resources.length < 2) {
+    return (
+      <ExpandableTile
+        style={{
+          "margin-top": "10px",
+          "margin-bottom": "10px",
+          "max-width": "100%",
+        }}
+        key={resource.id}
+        href={resource.Resources}
+        target="_blank"
+      >
+        <p class="title" style={{ "margin-bottom": "10px" }}>
+          {resource.TopicName}
         </p>
-
+        <p class="subject" style={{ "font-size": "small", "color": "#808080" }}>
+          {lookupTable[resource.Subject]}
+        </p>
         <TileBelowTheFoldContent>
-          <ReactMarkdown>
-            {result.Notes}
-          </ReactMarkdown>
+          <ReactMarkdown>{resource.Notes}</ReactMarkdown>
         </TileBelowTheFoldContent>
       </ExpandableTile>
+    );
+  }
 
-
-    ) : !result.Resources.includes('youtube.com') ? (
-
-      <ClickableTile className="tile" style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
-        <p className='title' style={{ "margin-bottom": "10px" }}>
-          {result.Resources.includes('youtube.com') && <LogoYoutube size={'25'} style={{ marginRight: '10px' }} />}
-          {result.TopicName}
+  // Render a tile for a resource that is not from YouTube
+  if (!resource.Resources.includes("youtube.com")) {
+    return (
+      <ClickableTile
+        className="tile"
+        style={{
+          "margin-top": "10px",
+          "margin-bottom": "10px",
+          "max-width": "100%",
+        }}
+        key={resource.id}
+        href={resource.Resources}
+        target="_blank"
+      >
+        <p className="title" style={{ "margin-bottom": "10px" }}>
+          {resource.Resources.includes("youtube.com") && (
+            <LogoYoutube size={"25"} style={{ marginRight: "10px" }} />
+          )}
+          {resource.TopicName}
+        </p>
+        <p class="subject" style={{ "font-size": "small", "color": "#808080" }}>
+          {lookupTable[resource.Subject]}
         </p>
       </ClickableTile>
+    );
+  }
 
-
-    ) : (
-      <>
-        <ClickableTile className="tile" style={{ "margin-top": "10px", "margin-bottom": "10px", "max-width": "100%" }} key={result.id} href={result.Resources} target="_blank">
-          <p className='title' style={{ "margin-bottom": "10px" }}>
-            {result.Resources.includes('youtube.com/watch?v=') && <LogoYoutube size={'25'} style={{ marginRight: '10px' }} />}
-            {result.TopicName}
-          </p>
-          <div className="image-container">
-            <div className="image-wrapper">
-              <img loading="lazy" src={`https://airgapflux.in/thumbnailcache/images/${result.id}.jpg`} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-              <PlayFilled className="play-icon" />
-            </div>
+  // Render a tile for a resource from YouTube with an image thumbnail
+  return (
+    <>
+      <ClickableTile
+        className="tile"
+        style={{
+          "margin-top": "10px",
+          "margin-bottom": "10px",
+          "max-width": "100%",
+        }}
+        key={resource.id}
+        href={resource.Resources}
+        target="_blank"
+      >
+        <p className="title" style={{ "margin-bottom": "10px" }}>
+          {resource.Resources.includes("youtube.com/watch?v=") && (
+            <LogoYoutube size={"25"} style={{ marginRight: "10px" }} />
+          )}
+          {resource.TopicName}
+        </p>
+        <p class="subject" style={{ "font-size": "small", "color": "#808080" }}>
+          {lookupTable[resource.Subject]}
+        </p>
+        <div className="image-container">
+          <div className="image-wrapper">
+            <img
+              loading="lazy"
+              src={`https://airgapflux.in/thumbnailcache/images/${resource.id}.jpg`}
+              alt=""
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
+            <PlayFilled className="play-icon" />
           </div>
-        </ClickableTile>
-
-      </>
-    )
+        </div>
+      </ClickableTile>
+    </>
   );
+};
+
 
   return (
     <div className="App">

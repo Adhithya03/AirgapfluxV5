@@ -21,7 +21,12 @@
     font-family: matrix;
 }
 
-/* Add this class to the image container */
+.subject{
+    font-size: small;
+    color: #808080;
+    margin: 10px;
+}
+
 .image-container {
     position: relative;
     display: flex;
