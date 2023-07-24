@@ -231,7 +231,7 @@ function SearchAGP() {
         id="search"
         size="lg"
         labelText="Search"
-        placeholder="search eg: inductor"
+        placeholder="search eg: Inductor"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => {
