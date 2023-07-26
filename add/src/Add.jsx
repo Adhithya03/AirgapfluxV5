@@ -58,7 +58,7 @@ const Addresource = () => {
         "Microprocessors": "mpmc",
         "Mechanical Engineering": "meeg",
         "Physics": "phys",
-        "PLC And SCADA": "plsc",
+        "PLC and Scada": "plsc",
         "Power Electronics": "poel",
         "Power system operation": "psop",
         "Power Systems Analysis": "posy",
@@ -168,7 +168,7 @@ const Addresource = () => {
                   id="subject"
                   titleText="Subject *"
                   label="Select Subject"
-                  items={["Fundamentals", "Analog Electronics", "Circuit Theory", "Consumer Electronics", "Control Systems", "Digital Electronics", "Design Of Electrical Machines", "Digital Signal Processing", "Electronic Devices And Circuits", "Electromagnetic Fields", "Electrical Machines", "Measurement and Instrumentation", "Microprocessors", "Mechanical Engineering", "PLC And Scada", "Power Electronics", "Power Systems Analysis", "Protection And Switch Gear", "Physics", "Solid State Drives", "Special Machines", "Transmission And Distribution", "Embedded Systems",
+                  items={["Fundamentals", "Analog Electronics", "Circuit Theory", "Consumer Electronics", "Control Systems", "Digital Electronics", "Design Of Electrical Machines", "Digital Signal Processing", "Electronic Devices And Circuits", "Electromagnetic Fields", "Electrical Machines", "Measurement and Instrumentation", "Microprocessors", "Mechanical Engineering", "PLC and Scada", "Power Electronics", "Power Systems Analysis", "Protection And Switch Gear", "Physics", "Solid State Drives", "Special Machines", "Transmission And Distribution", "Embedded Systems",
                     "Power system operation",
                     "Flexible AC Transmission Systems",
                     "Renewable Energy Systems",
