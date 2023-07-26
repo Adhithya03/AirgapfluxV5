@@ -3,10 +3,6 @@ import urllib.request
 from PIL import Image
 
 # Database credentials
-host = "89.117.157.1"
-user = "u244798336_adhithya"
-password = "63799740710@Adhithya"
-database = "u244798336_agp_main"
 
 conn = mysql.connector.connect(host=host, user=user, password=password, database=database)
 
