@@ -6,3 +6,4 @@ backendlocal
 **/fonts/
 .gitignore
 **/thumnail/
+builder.py
