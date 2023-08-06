@@ -104,26 +104,46 @@ function SearchAGP() {
 
     // Render a tile for a simulation resource
     if (resource["Category"] == "simu") {
+      if (resource.Notes.length > 2) {
       return (
-        <ClickableTile
-          style={{
-            "margin-top": "10px",
-            "margin-bottom": "10px",
-            "max-width": "100%",
-          }}
-          key={resource.id}
-          href={resource.Resources}
-          target="_blank"
-        >
-          <p class="title" style={{ "margin-bottom": "10px" }}>
-            {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
-            {resource.TopicName}
-          </p>
-          <p class="subject" style={{ "font-size": "small", color: "#808080" }}>
-            {lookupTable[resource.Subject]}
-          </p>
-        </ClickableTile>
-      );
+            <ExpandableTile
+              style={{
+                "margin-top": "10px",
+                "margin-bottom": "10px",
+                "max-width": "100%",
+              }}
+              key={resource.id}
+              href={resource.Resources}
+              target="_blank"
+            >
+              <p class="title" style={{ "margin-bottom": "10px" }}>
+                {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
+                {resource.TopicName}
+              </p>
+              <div class="notes" style={{ "font-size": "small", color: "#808080" }}>
+              <ReactMarkdown>{resource.Notes}</ReactMarkdown>
+              </div>
+            </ExpandableTile>
+          );
+        } else {
+          return (
+            <ClickableTile
+              style={{
+                "margin-top": "10px",
+                "margin-bottom": "10px",
+                "max-width": "100%",
+              }}
+              key={resource.id}
+              href={resource.Resources}
+              target="_blank"
+            >
+              <p class="title" style={{ "margin-bottom": "10px" }}>
+                {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
+                {resource.TopicName}
+              </p>
+            </ClickableTile>
+          );
+        }
     }
 
     // Render a tile for a YouTube playlist resource with an image thumbnail

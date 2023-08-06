@@ -101,10 +101,12 @@ const ExplorePage = () => {
                 <br />
                 <br />
                 <h3 id='books' class='h3'><Book size={20} />  Books suggested</h3>
+                These books are for conceptual learning and are listed in a hope that will make you love the subjects.
                 <br />
-                <p class='note'>Note only author name is mentioned for books, you can search for the book in google/amazon/bookswagon to buy it.
                 <br />
-                For eg: A conceptual introduction to powersystem by <strong>Alexandra von Meier</strong> will be just mentioned as <strong>Alexandra von Meier</strong> in the list.                
+                <br />
+                Note only author name is mentioned for books, For eg: "Electric Drives and Machines by <strong>Theodore Wildi</strong>." will be just mentioned as <strong>Thedore wildi</strong> in the list below, <p class='note'> you can search for the book in google/amazon/bookswagon "author + subject name" to buy it.
+                <br />
                 </p>
                 <br />
                 <br />
@@ -113,7 +115,7 @@ const ExplorePage = () => {
                 ) : (
                     <Accordion>
                         {subjects.map((subject) => (
-                            <AccordionItem title={lookupTable[subject.Subject]} key={subject.id}>
+                            <AccordionItem open={false} title={lookupTable[subject.Subject]} key={subject.id}>
                                 <ul key={subject.id}>
                                     {books
                                         .filter((book) => book.Subject === subject.Subject)
