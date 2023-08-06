@@ -79,6 +79,7 @@ const ExplorePage = () => {
   const [resources, setResources] = useState([]);
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [simulations, setSimulations] = useState([]); // create a new state variable for simulations
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,6 +93,11 @@ const ExplorePage = () => {
       );
       const data2 = await response2.json();
       setBooks(data2);
+      const response3 = await fetch(
+        "https://api.airgapflux.in/fetch/simulations.php"
+      ); // fetch the simulations data from the API
+      const data3 = await response3.json();
+      setSimulations(data3); // store the simulations data in the state variable
       setTimeout(() => {
         setLoading(false);
       }, 1500);
@@ -103,7 +109,7 @@ const ExplorePage = () => {
     <>
       <Content>
         {" "}
-        <h1 id="videos" class="h1">
+        <h1 id="videos" className="h1">
           Explore Our Resources
         </h1>
         <br />
@@ -115,7 +121,7 @@ const ExplorePage = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <h3 class="h3">
+              <h3 className="h3">
                 <LogoYoutube size={20} /> Video Resources
               </h3>
               <p className="note">
@@ -127,40 +133,47 @@ const ExplorePage = () => {
                 <AccordionSkeleton open={false} count={26} />
               ) : (
                 <Accordion>
-                  {subjects.map((subject) => (
-                    <AccordionItem
-                      title={lookupTable[subject.Subject]}
-                      key={subject.id}
-                    >
-                      <ul key={subject.id}>
-                        {resources
-                          .filter(
-                            (resource) => resource.Subject === subject.Subject
-                          )
-                          .map((resource) => (
-                            <div className="indvidialList">
-                              <li key={resource.id}>
-                                <Link
-                                  key={resource.id}
-                                  href={resource.Resources}
-                                >
-                                  {resource.TopicName}
-                                </Link>
-                              </li>
-                            </div>
-                          ))}
-                      </ul>
-                    </AccordionItem>
-                  ))}
+                  {subjects
+                    .filter(
+                      (subject) =>
+                        resources.some(
+                          (resource) => resource.Subject === subject.Subject
+                        ) // filter out the subjects that have no resources
+                    )
+                    .map((subject) => (
+                      <AccordionItem
+                        title={lookupTable[subject.Subject]}
+                        key={subject.id}
+                      >
+                        <ul key={subject.id}>
+                          {resources
+                            .filter(
+                              (resource) => resource.Subject === subject.Subject
+                            )
+                            .map((resource) => (
+                              <div className="indvidialList">
+                                <li key={resource.id}>
+                                  <Link
+                                    key={resource.id}
+                                    href={resource.Resources}
+                                  >
+                                    {resource.TopicName}
+                                  </Link>
+                                </li>
+                              </div>
+                            ))}
+                        </ul>
+                      </AccordionItem>
+                    ))}
                 </Accordion>
               )}
             </TabPanel>
             <TabPanel>
-              <h3 id="books" class="h3">
+              <h3 id="books" className="h3">
                 <Book size={20} /> Books suggested
               </h3>
 
-              <p class="note">
+              <p className="note">
                 These books are for conceptual learning and are listed in a hope
                 that will make you love the subjects. you can search for the
                 book in google/amazon/bookswagon "author + subject name" to buy
@@ -173,25 +186,77 @@ const ExplorePage = () => {
                 <AccordionSkeleton open={false} count={13} />
               ) : (
                 <Accordion>
-                  {subjects.map((subject) => (
-                    <AccordionItem
-                      open={false}
-                      title={lookupTable[subject.Subject]}
-                      key={subject.id}
-                    >
-                      <ul key={subject.id}>
-                        {books
-                          .filter((book) => book.Subject === subject.Subject)
-                          .map((book) => (
-                            <div className="indvidialList">
-                              <li key={book.id}>
-                                <ReactMarkdown>{book.Notes}</ReactMarkdown>
-                              </li>
-                            </div>
-                          ))}
-                      </ul>
-                    </AccordionItem>
-                  ))}
+                  {subjects
+                    .filter(
+                      (subject) =>
+                        books.some((book) => book.Subject === subject.Subject) // filter out the subjects that have no books
+                    )
+                    .map((subject) => (
+                      <AccordionItem
+                        open={false}
+                        title={lookupTable[subject.Subject]}
+                        key={subject.id}
+                      >
+                        <ul key={subject.id}>
+                          {books
+                            .filter((book) => book.Subject === subject.Subject)
+                            .map((book) => (
+                              <div className="indvidialList">
+                                <li key={book.id}>
+                                  <ReactMarkdown>{book.Notes}</ReactMarkdown>
+                                </li>
+                              </div>
+                            ))}
+                        </ul>
+                      </AccordionItem>
+                    ))}
+                </Accordion>
+              )}
+            </TabPanel>
+            <TabPanel>
+              {" "}
+              <h3 className="h3">Simulations</h3>
+              These simulations are for practical learning and are listed in a
+              hope that will make you enjoy the subjects.
+              <br />
+              <br />
+              {loading ? (
+                <AccordionSkeleton open={false} count={26} />
+              ) : (
+                <Accordion>
+                  {subjects
+                    .filter(
+                      (subject) =>
+                        simulations.some(
+                          (simulation) => simulation.Subject === subject.Subject
+                        ) // filter out the subjects that have no simulations
+                    )
+                    .map((subject) => (
+                      <AccordionItem
+                        title={lookupTable[subject.Subject]}
+                        key={subject.id}
+                      >
+                        <ul key={subject.id}>
+                          {simulations
+                            .filter(
+                              (simulation) =>
+                                simulation.Subject === subject.Subject
+                            )
+                            .map((simulation) => (
+                              <div className="indvidialList">
+                                <li key={simulation.id}>
+                                  <Link
+                                    key={simulation.id}
+                                    href={simulation.Resources}
+                                  >
+                                    {simulation.TopicName}
+                                  </Link>
+                                </li>
+                              </div>
+                            ))}
+                        </ul>
+                      </AccordionItem>
+                    ))}
                 </Accordion>
               )}
             </TabPanel>
