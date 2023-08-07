@@ -1,43 +1,47 @@
-import React, { useEffect, useState } from "react";
+import { Book, LogoYoutube } from "@carbon/icons-react";
 import {
-  Content,
   Accordion,
   AccordionItem,
-  Link,
   AccordionSkeleton,
+  Content,
+  Link,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
 } from "@carbon/react";
-import { Book, LogoYoutube } from "@carbon/icons-react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@carbon/react";
 
 const subjects = [
-  { Subject: "basc" },
-  { Subject: "oali" },
-  { Subject: "bect" },
-  { Subject: "coel" },
-  { Subject: "cosy" },
-  { Subject: "diel" },
-  { Subject: "doem" },
-  { Subject: "dsip" },
-  { Subject: "edac" },
-  { Subject: "emfi" },
-  { Subject: "embs" },
-  { Subject: "mach" },
-  { Subject: "fats" },
-  { Subject: "hevs" },
-  { Subject: "main" },
-  { Subject: "mpmc" },
-  { Subject: "meeg" },
-  { Subject: "phys" },
-  { Subject: "plsc" },
-  { Subject: "psop" },
-  { Subject: "poel" },
-  { Subject: "posy" },
-  { Subject: "prsw" },
-  { Subject: "rees" },
-  { Subject: "slsd" },
-  { Subject: "spem" },
-  { Subject: "tmdt" },
+  "basc",
+  "oali",
+  "bect",
+  "coel",
+  "cosy",
+  "diel",
+  "doem",
+  "dsip",
+  "edac",
+  "emfi",
+  "embs",
+  "mach",
+  "fats",
+  "hevs",
+  "main",
+  "mpmc",
+  "meeg",
+  "phys",
+  "plsc",
+  "psop",
+  "poel",
+  "posy",
+  "prsw",
+  "rees",
+  "slsd",
+  "spem",
+  "tmdt",
 ];
 
 const lookupTable = {
@@ -70,37 +74,28 @@ const lookupTable = {
   tmdt: "Transmission And Distribution",
 };
 
-const getAirgapfluxUrl = (topicName) => {
-  const encodedTopicName = encodeURIComponent(topicName);
-  return `https://airgapflux.in?s=${encodedTopicName}`;
-};
-
 const ExplorePage = () => {
   const [resources, setResources] = useState([]);
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [simulations, setSimulations] = useState([]); // create a new state variable for simulations
+  const [simulations, setSimulations] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response1 = await fetch(
-        "https://api.airgapflux.in/fetch/videos.php"
-      );
-      const data1 = await response1.json();
+      const [response1, response2, response3] = await Promise.all([
+        fetch("https://api.airgapflux.in/fetch/videos.php"),
+        fetch("https://api.airgapflux.in/fetch/books.php"),
+        fetch("https://api.airgapflux.in/fetch/simulations.php"),
+      ]);
+      const [data1, data2, data3] = await Promise.all([
+        response1.json(),
+        response2.json(),
+        response3.json(),
+      ]);
       setResources(data1);
-      const response2 = await fetch(
-        "https://api.airgapflux.in/fetch/books.php"
-      );
-      const data2 = await response2.json();
       setBooks(data2);
-      const response3 = await fetch(
-        "https://api.airgapflux.in/fetch/simulations.php"
-      ); // fetch the simulations data from the API
-      const data3 = await response3.json();
-      setSimulations(data3); // store the simulations data in the state variable
-      setTimeout(() => {
-        setLoading(false);
-      }, 1500);
+      setSimulations(data3);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -108,7 +103,6 @@ const ExplorePage = () => {
   return (
     <>
       <Content>
-        {" "}
         <h1 id="videos" className="h1">
           Explore Our Resources
         </h1>
@@ -134,29 +128,25 @@ const ExplorePage = () => {
               ) : (
                 <Accordion>
                   {subjects
-                    .filter(
-                      (subject) =>
-                        resources.some(
-                          (resource) => resource.Subject === subject.Subject
-                        ) // filter out the subjects that have no resources
+                    .filter((subject) =>
+                      resources.some(
+                        (resource) => resource.Subject === subject
+                      )
                     )
                     .map((subject) => (
                       <AccordionItem
-                        title={lookupTable[subject.Subject]}
-                        key={subject.id}
+                        title={lookupTable[subject]}
+                        key={subject}
                       >
-                        <ul key={subject.id}>
+                        <ul>
                           {resources
                             .filter(
-                              (resource) => resource.Subject === subject.Subject
+                              (resource) => resource.Subject === subject
                             )
                             .map((resource) => (
-                              <div className="indvidialList">
+                              <div key={resource.id} className="indvidialList">
                                 <li key={resource.id}>
-                                  <Link
-                                    key={resource.id}
-                                    href={resource.Resources}
-                                  >
+                                  <Link href={resource.Resources}>
                                     {resource.TopicName}
                                   </Link>
                                 </li>
@@ -187,21 +177,20 @@ const ExplorePage = () => {
               ) : (
                 <Accordion>
                   {subjects
-                    .filter(
-                      (subject) =>
-                        books.some((book) => book.Subject === subject.Subject) // filter out the subjects that have no books
+                    .filter((subject) =>
+                      books.some((book) => book.Subject === subject)
                     )
                     .map((subject) => (
                       <AccordionItem
                         open={false}
-                        title={lookupTable[subject.Subject]}
-                        key={subject.id}
+                        title={lookupTable[subject]}
+                        key={subject}
                       >
-                        <ul key={subject.id}>
+                        <ul>
                           {books
-                            .filter((book) => book.Subject === subject.Subject)
+                            .filter((book) => book.Subject === subject)
                             .map((book) => (
-                              <div className="indvidialList">
+                              <div key={book.id} className="indvidialList">
                                 <li key={book.id}>
                                   <ReactMarkdown>{book.Notes}</ReactMarkdown>
                                 </li>
@@ -214,7 +203,6 @@ const ExplorePage = () => {
               )}
             </TabPanel>
             <TabPanel>
-              {" "}
               <h3 className="h3">Simulations</h3>
               These simulations are for practical learning and are listed in a
               hope that will make you enjoy the subjects.
@@ -225,30 +213,26 @@ const ExplorePage = () => {
               ) : (
                 <Accordion>
                   {subjects
-                    .filter(
-                      (subject) =>
-                        simulations.some(
-                          (simulation) => simulation.Subject === subject.Subject
-                        ) // filter out the subjects that have no simulations
+                    .filter((subject) =>
+                      simulations.some(
+                        (simulation) => simulation.Subject === subject
+                      )
                     )
                     .map((subject) => (
                       <AccordionItem
-                        title={lookupTable[subject.Subject]}
-                        key={subject.id}
+                        title={lookupTable[subject]}
+                        key={subject}
                       >
-                        <ul key={subject.id}>
+                        <ul>
                           {simulations
                             .filter(
                               (simulation) =>
-                                simulation.Subject === subject.Subject
+                                simulation.Subject === subject
                             )
                             .map((simulation) => (
-                              <div className="indvidialList">
+                              <div key={simulation.id} className="indvidialList">
                                 <li key={simulation.id}>
-                                  <Link
-                                    key={simulation.id}
-                                    href={simulation.Resources}
-                                  >
+                                  <Link href={simulation.Resources}>
                                     {simulation.TopicName}
                                   </Link>
                                 </li>
