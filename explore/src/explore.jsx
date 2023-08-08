@@ -102,7 +102,10 @@ const ExplorePage = () => {
 
   return (
     <>
-      <Content>
+    <br />
+    <br />
+    <br />
+
         <h1 id="videos" className="h1">
           Explore Our Resources
         </h1>
@@ -246,7 +249,7 @@ const ExplorePage = () => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-      </Content>
+
     </>
   );
 };
