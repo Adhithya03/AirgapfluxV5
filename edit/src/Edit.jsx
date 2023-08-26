@@ -26,12 +26,12 @@ const lookupTable = {
   "Electronic Devices And Circuits": "edac",
   "Embedded Systems": "embs",
   "Flexible AC Transmission Systems": "fats",
-  Fundamentals: "basc",
+  "Fundamentals": "basc",
   "Hybrid Electric Vehicles": "hevs",
   "Measurement and Instrumentation": "main",
-  Microprocessors: "mpmc",
+  "Microprocessors": "mpmc",
   "Mechanical Engineering": "meeg",
-  Physics: "phys",
+  "Physics": "phys",
   "PLC and Scada": "plsc",
   "Power Electronics": "poel",
   "Power system operation": "psop",
@@ -73,11 +73,11 @@ function RecordEditor() {
     if (results.length > 0) {
       // Update the state variables with the current result object
       setId(results[index]["id"]);
+      setSubject(results[index]["Subject"]);
       setTitle(results[index]["TopicName"]);
       setResources(results[index]["Resources"]);
       setNotes(results[index]["Notes"]);
       setCategory(results[index]["Category"]);
-      setSubject(results[index]["Subject"]);
     }
   }, [index]);
 
@@ -262,9 +262,12 @@ function RecordEditor() {
                 "Flexible AC Transmission Systems",
                 "Renewable Energy Systems",
                 "Hybrid Electric Vehicles",
-              ]} // Use the items prop to pass an array of values
-              selectedItem={subject} // Use the selectedItem prop to bind the selected value
-              onChange={(e) => setSubject(e.selectedItem)} // Use the onChange prop to handle the selection change
+              ]}
+              selectedItem={subject}
+              onChange={(e) => setSubject(lookupTable[e.selectedItem])}
+
+              onInit={() => setSubject(items[0])}
+              onRerender={() => setSubject(items[0])}
             />
 
             <br />

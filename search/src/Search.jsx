@@ -73,6 +73,7 @@ function SearchAGP() {
     setResults(data);
     setLoading(false);
   };
+
   const renderResult = (resource) => {
     // Render a tile for a book resource
     if (resource["Category"] == "books") {
@@ -105,45 +106,48 @@ function SearchAGP() {
     // Render a tile for a simulation resource
     if (resource["Category"] == "simu") {
       if (resource.Notes.length > 2) {
-      return (
-            <ExpandableTile
-              style={{
-                "margin-top": "10px",
-                "margin-bottom": "10px",
-                "max-width": "100%",
-              }}
-              key={resource.id}
-              href={resource.Resources}
-              target="_blank"
+        return (
+          <ExpandableTile
+            style={{
+              "margin-top": "10px",
+              "margin-bottom": "10px",
+              "max-width": "100%",
+            }}
+            key={resource.id}
+            href={resource.Resources}
+            target="_blank"
+          >
+            <p class="title" style={{ "margin-bottom": "10px" }}>
+              {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
+              {resource.TopicName}
+            </p>
+            <div
+              class="notes"
+              style={{ "font-size": "small", color: "#808080" }}
             >
-              <p class="title" style={{ "margin-bottom": "10px" }}>
-                {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
-                {resource.TopicName}
-              </p>
-              <div class="notes" style={{ "font-size": "small", color: "#808080" }}>
               <ReactMarkdown>{resource.Notes}</ReactMarkdown>
-              </div>
-            </ExpandableTile>
-          );
-        } else {
-          return (
-            <ClickableTile
-              style={{
-                "margin-top": "10px",
-                "margin-bottom": "10px",
-                "max-width": "100%",
-              }}
-              key={resource.id}
-              href={resource.Resources}
-              target="_blank"
-            >
-              <p class="title" style={{ "margin-bottom": "10px" }}>
-                {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
-                {resource.TopicName}
-              </p>
-            </ClickableTile>
-          );
-        }
+            </div>
+          </ExpandableTile>
+        );
+      } else {
+        return (
+          <ClickableTile
+            style={{
+              "margin-top": "10px",
+              "margin-bottom": "10px",
+              "max-width": "100%",
+            }}
+            key={resource.id}
+            href={resource.Resources}
+            target="_blank"
+          >
+            <p class="title" style={{ "margin-bottom": "10px" }}>
+              {<Laptop size={"25"} style={{ marginRight: "10px" }} />}
+              {resource.TopicName}
+            </p>
+          </ClickableTile>
+        );
+      }
     }
 
     // Render a tile for a YouTube playlist resource with an image thumbnail
@@ -206,12 +210,14 @@ function SearchAGP() {
             </p>
             <div className="image-container">
               <div className="image-wrapper">
+
                 <img
                   loading="lazy"
                   src={`https://airgapflux.in/thumbnailcache/images/${resource.id}.jpg`}
                   alt=""
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
+      
                 <PlayOutlineFilled className="play-icon" size={"100"} />
               </div>
             </div>
