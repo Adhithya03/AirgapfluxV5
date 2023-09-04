@@ -3,9 +3,10 @@ import {
   Switcher,
   Notification,
   UserAvatar,
-  Search,
+  Microscope,
   Explore,
   Information,
+  VideoAdd,
 } from "@carbon/react/icons";
 import { Link } from "react-router-dom";
 import {
