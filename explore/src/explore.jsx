@@ -170,7 +170,9 @@ const ExplorePage = () => {
                 These books are for conceptual learning and are listed in a hope
                 that will make you love the subjects. you can search for the
                 book in google/amazon/bookswagon "author + subject name" to buy
-                it. (here only author name is given)
+                it. (here only author name is given).
+
+                Note this is not link to book.
                 <br />
               </p>
               <br />
