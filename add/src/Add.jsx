@@ -116,7 +116,7 @@ const Addresource = () => {
                   title="Something went wrong"
                   subtitle={showToast} // display the error toast message
                   caption=""
-                  timeout={3000}
+                  timeout={5000}
                   style={{ position: 'fixed', top: 100, right: 50, zIndex: 9999 }}
                 />
               )}
