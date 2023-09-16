@@ -1,0 +1,85 @@
+@use "@carbon/layout";
+
+@font-face {
+  font-family: vistaMedium;
+  src: url("../public/fonts/vista/VistaSansNarOT-Medium.ttf");
+}
+
+@font-face {
+  font-family: matrix;
+  src: url("../public/fonts/mrEaves/MrsEavesRoman.ttf");
+}
+
+.title {
+  font-size: 35px;
+  font-family: vistaMedium;
+}
+
+.mainTitleHeader {
+  font-size: larger;
+  font-family: matrix;
+}
+
+.subject {
+  font-size: small;
+  color: #808080;
+  margin: 10px;
+}
+
+.image-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  opacity: 0.65;
+}
+img:hover {
+  opacity: 0.85;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Add this class to the play icon */
+.play-icon {
+  position: absolute;
+  z-index: 1;
+}
+.play-icon:hover {
+  position: absolute;
+  z-index: 1;
+  width: 110px;
+  height: 110px;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Add this media query for screens larger than 768px */
+@media (min-width: 768px) {
+  /* Add this class to the tile */
+  .tile {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    align-items: center;
+  }
+
+  /* Add this class to the title */
+  .title {
+    grid-column: 1 / 2;
+    text-align: left;
+  }
+
+  /* Add this class to the image container */
+  .image-container {
+    grid-column: 2 / 3;
+    justify-content: flex-start;
+  }
+}
+
+.image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
