@@ -1,8 +1,8 @@
 import { Content, Theme } from "@carbon/react";
 import NavHeader from "./Header";
-import SearchAGP from './Search'
+import About from './About'
 
-import "./App.scss";
+import "./About.scss";
 
 function App() {
    return (
@@ -12,7 +12,7 @@ function App() {
             </Theme>
          <Theme theme="g100">
             <Content>
-               <SearchAGP></SearchAGP>
+               <About></About>
             </Content>
             </Theme>
       </>

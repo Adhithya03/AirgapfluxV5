@@ -1,67 +1,32 @@
 import React, { useState, useEffect } from "react";
-import {
-  Book,
-  Laptop,
-  LogoYoutube,
-  Wikis,
-  Playlist,
-  PlayOutlineFilled,
-} from "@carbon/icons-react";
-import {
-  ExpandableTile,
-  TileBelowTheFoldContent,
-  ClickableTile,
-  Search,
-  SkeletonPlaceholder,
-} from "@carbon/react";
+import {Book,Laptop,LogoYoutube,Wikis,Playlist,PlayOutlineFilled} from "@carbon/icons-react";
+import {ExpandableTile,TileBelowTheFoldContent,ClickableTile,Search,SkeletonPlaceholder,} from "@carbon/react";
 import { createBrowserHistory } from "history";
 import ReactMarkdown from "react-markdown";
+
+
+
 import "./App.scss";
-const lookupTable = {
-  oali: "Analog Electronics",
-  basc: "Fundamentals",
-  embs: "Embedded Systems",
-  psop: "Power system operation",
-  fats: "Flexible AC Transmission Systems",
-  rees: "Renewable Energy Systems",
-  hevs: "Hybrid Electric Vehicles",
-  bect: "Circuit Theory",
-  coel: "Consumer Electronics",
-  cosy: "Control Systems",
-  diel: "Digital Electronics",
-  doem: "Design Of Electrical Machines",
-  dsip: "Digital Signal Processing",
-  edac: "Electronic Devices And Circuits",
-  emfi: "Electromagnetic Fields",
-  mach: "Electrical Machines",
-  main: "Measurement and Instrumentation",
-  mpmc: "Microprocessors",
-  meeg: "Mechanical Engineering",
-  phys: "Physics",
-  plsc: "PLC and Scada",
-  poel: "Power Electronics",
-  posy: "Power Systems Analysis",
-  prsw: "Protection And Switch Gear",
-  slsd: "Solid State Drives",
-  spem: "Special Machines",
-  tmdt: "Transmission And Distribution",
-};
+
+
+
+const lookupTable = {oali: "Analog Electronics",basc: "Fundamentals",embs: "Embedded Systems",psop: "Power system operation",fats: "Flexible AC Transmission Systems",rees: "Renewable Energy Systems",hevs: "Hybrid Electric Vehicles",bect: "Circuit Theory",coel: "Consumer Electronics",cosy: "Control Systems",diel: "Digital Electronics",doem: "Design Of Electrical Machines",dsip: "Digital Signal Processing",edac: "Electronic Devices And Circuits",emfi: "Electromagnetic Fields",mach: "Electrical Machines",main: "Measurement and Instrumentation",mpmc: "Microprocessors",meeg: "Mechanical Engineering",phys: "Physics",plsc: "PLC and Scada",poel: "Power Electronics",posy: "Power Systems Analysis",prsw: "Protection And Switch Gear",slsd: "Solid State Drives",spem: "Special Machines",tmdt: "Transmission And Distribution",};
 
 function SearchAGP() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const history = createBrowserHistory(); // create a history object
+  const history = createBrowserHistory();
 
   useEffect(() => {
-    const location = history.location; // get the current URL from the history object
-    const params = new URLSearchParams(location.search); // parse the query string
-    const q = params.get("q"); // get the value of q parameter
+    const location = history.location;
+    const params = new URLSearchParams(location.search);
+    const q = params.get("q");
     if (q) {
-      setQuery(q); // set the query state
-      handleSearch(q); // call your search function
+      setQuery(q);
+      handleSearch(q);
     }
-  }, [location]); // this is the array of dependencies
+  }, [location]);
 
   const handleSearch = async (query) => {
     setLoading(true);
@@ -103,7 +68,6 @@ function SearchAGP() {
       );
     }
 
-    // Render a tile for a simulation resource
     if (resource["Category"] == "simu") {
       if (resource.Notes.length > 2) {
         return (
@@ -150,7 +114,6 @@ function SearchAGP() {
       }
     }
 
-    // Render a tile for a YouTube playlist resource with an image thumbnail
     if (resource.Resources.includes("list")) {
       return (
         <>
@@ -210,14 +173,13 @@ function SearchAGP() {
             </p>
             <div className="image-container">
               <div className="image-wrapper">
-
                 <img
                   loading="lazy"
                   src={`https://airgapflux.in/thumbnailcache/images/${resource.id}.jpg`}
                   alt=""
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
-      
+
                 <PlayOutlineFilled className="play-icon" size={"100"} />
               </div>
             </div>
@@ -257,7 +219,7 @@ function SearchAGP() {
         id="search"
         size="lg"
         labelText="Search"
-        placeholder="search eg: Inductor"
+        placeholder="search eg: Generator working principle"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => {

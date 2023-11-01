@@ -45,7 +45,7 @@ const NavHeader = () => (
                 marginRight: "10px",
               }}
             />
-            Airgapflux Search
+            Airgapflux About
           </span>
         </HeaderName>
 
