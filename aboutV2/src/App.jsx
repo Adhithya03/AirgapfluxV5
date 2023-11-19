@@ -1,22 +1,20 @@
 import { Content, Theme } from "@carbon/react";
 import NavHeader from "./Header";
-import About from './About'
+import BarChartComponent from "./stats";
+import About from "./About";
 
-import "./About.scss";
 
 function App() {
-   return (
-      <>    
-         <Theme theme="g100">
-            <NavHeader/>
-            </Theme>
-         <Theme theme="g100">
-            <Content>
-               <About></About>
-            </Content>
-            </Theme>
-      </>
-   );
+  return (
+    <>
+      <Theme >
+        <NavHeader />
+        <Content>
+            <BarChartComponent />
+        </Content>
+      </Theme>
+    </>
+  );
 }
 
 export default App;
