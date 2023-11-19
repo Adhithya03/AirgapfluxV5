@@ -43,6 +43,8 @@ class BarChartComponent extends Component {
       data: [],
       options: {
         title: 'Number of Video Resources by Subject',
+      
+        
         axes: {
           left: {
             mapsTo: 'group',
@@ -53,7 +55,7 @@ class BarChartComponent extends Component {
 
           },
         },
-        height: '800px',
+        height: '1000px',
       },
     };
   }
@@ -103,7 +105,12 @@ class BarChartComponent extends Component {
   render() {
     return (
       <div>
+        <br /> 
+        <br /> 
         <h3>Resource Distribution Chart</h3>
+        <p>
+          The above is a chart of the number of resources available for each subject. The data is fetched from the database and is updated each time you refresh this page.
+        </p>
         <SimpleBarChart data={this.state.data} options={this.state.options} />
       </div>
     );

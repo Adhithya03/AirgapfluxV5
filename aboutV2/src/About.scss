@@ -1,1 +1,55 @@
 @use "@carbon/layout";
+/* Add this CSS to your About.scss file */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #007acc; /* IBM Blue - you can change this color to your preference */
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .text {
+    line-height: 1.6;
+  }
+  
+  a {
+    color: #007acc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  img.img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Additional styling for technical details section */
+  h1 {
+    color: #4caf50; /* Green color - you can change this to your preference */
+  }
+  
+  /* Add more styles as needed */
+  
+  
