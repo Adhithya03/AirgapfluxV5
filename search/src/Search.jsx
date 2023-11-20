@@ -1,22 +1,110 @@
 import React, { useState, useEffect } from "react";
-import {Book,Laptop,LogoYoutube,Wikis,Playlist,PlayOutlineFilled} from "@carbon/icons-react";
-import {ExpandableTile,TileBelowTheFoldContent,ClickableTile,Search,SkeletonPlaceholder,} from "@carbon/react";
+import {
+  Book,
+  Laptop,
+  LogoYoutube,
+  Wikis,
+  Playlist,
+  PlayOutlineFilled,
+} from "@carbon/icons-react";
+import {
+  ExpandableTile,
+  TileBelowTheFoldContent,
+  ClickableTile,
+  Search,
+  SkeletonPlaceholder,
+} from "@carbon/react";
 import { createBrowserHistory } from "history";
 import ReactMarkdown from "react-markdown";
-
-
+import Typist from "react-typist";
 
 import "./App.scss";
 
-
-
-const lookupTable = {oali: "Analog Electronics",basc: "Fundamentals",embs: "Embedded Systems",psop: "Power system operation",fats: "Flexible AC Transmission Systems",rees: "Renewable Energy Systems",hevs: "Hybrid Electric Vehicles",bect: "Circuit Theory",coel: "Consumer Electronics",cosy: "Control Systems",diel: "Digital Electronics",doem: "Design Of Electrical Machines",dsip: "Digital Signal Processing",edac: "Electronic Devices And Circuits",emfi: "Electromagnetic Fields",mach: "Electrical Machines",main: "Measurement and Instrumentation",mpmc: "Microprocessors",meeg: "Mechanical Engineering",phys: "Physics",plsc: "PLC and Scada",poel: "Power Electronics",posy: "Power Systems Analysis",prsw: "Protection And Switch Gear",slsd: "Solid State Drives",spem: "Special Machines",tmdt: "Transmission And Distribution",};
+const lookupTable = {
+  oali: "Analog Electronics",
+  basc: "Fundamentals",
+  embs: "Embedded Systems",
+  psop: "Power system operation",
+  fats: "Flexible AC Transmission Systems",
+  rees: "Renewable Energy Systems",
+  hevs: "Hybrid Electric Vehicles",
+  bect: "Circuit Theory",
+  coel: "Consumer Electronics",
+  cosy: "Control Systems",
+  diel: "Digital Electronics",
+  doem: "Design Of Electrical Machines",
+  dsip: "Digital Signal Processing",
+  edac: "Electronic Devices And Circuits",
+  emfi: "Electromagnetic Fields",
+  mach: "Electrical Machines",
+  main: "Measurement and Instrumentation",
+  mpmc: "Microprocessors",
+  meeg: "Mechanical Engineering",
+  phys: "Physics",
+  plsc: "PLC and Scada",
+  poel: "Power Electronics",
+  posy: "Power Systems Analysis",
+  prsw: "Protection And Switch Gear",
+  slsd: "Solid State Drives",
+  spem: "Special Machines",
+  tmdt: "Transmission And Distribution",
+};
 
 function SearchAGP() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [placeholder, setPlaceholder] = useState("Enter a search term...");
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const history = createBrowserHistory();
+
+  useEffect(() => {
+    const typingEffect = () => {
+      const exampleSearches = [
+        "Search eg: Control system books",
+        "Search eg: Laplace transform",
+        "Search eg: Inductor working",
+        "Search eg: Generator working principle",
+        "Search eg: Francis turbine",
+        "Search eg: Hydroelectric power plant",
+        "Search eg: Analog electronics books",
+        "Search eg: Fourier transform intution",
+        "Search eg: Bode plot",
+      ];
+      let shuffledSearches = [...exampleSearches];
+
+      // Shuffle the array of example searches
+      for (let i = shuffledSearches.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledSearches[i], shuffledSearches[j]] = [
+          shuffledSearches[j],
+          shuffledSearches[i],
+        ];
+      }
+
+      let newIndex = 0;
+
+      const updatePlaceholder = () => {
+        if (newIndex < shuffledSearches.length) {
+          setPlaceholder(shuffledSearches[newIndex]);
+          newIndex += 1;
+        } else {
+          newIndex = 0;
+          setPlaceholder("Search eg: Generator working principle");
+        }
+      };
+      // Start the typing effect
+      updatePlaceholder();
+
+      // Repeat the typing effect with a delay
+      const intervalId = setInterval(updatePlaceholder, 2000); // 3000 ms delay
+
+      return () => clearInterval(intervalId); // Clean up on unmount
+    };
+
+    typingEffect();
+  }, []);
 
   useEffect(() => {
     const location = history.location;
@@ -178,9 +266,11 @@ function SearchAGP() {
                   src={`https://airgapflux.in/thumbnailcache/images/${resource.id}.jpg`}
                   alt=""
                   style={{ maxWidth: "100%", height: "auto" }}
+                  onLoad={() => setImageLoaded(true)}
                 />
 
-                <PlayOutlineFilled className="play-icon" size={"100"} />
+                {imageLoaded && <PlayOutlineFilled className="play-icon"  size={"100"}/>}
+                {/* <PlayOutlineFilled className="play-icon" size={"100"} /> */}
               </div>
             </div>
           </ClickableTile>
@@ -219,7 +309,7 @@ function SearchAGP() {
         id="search"
         size="lg"
         labelText="Search"
-        placeholder="search eg: Generator working principle"
+        placeholder={placeholder}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => {
