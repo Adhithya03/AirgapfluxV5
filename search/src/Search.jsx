@@ -69,8 +69,19 @@ function SearchAGP() {
         "Search eg: Francis turbine",
         "Search eg: Hydroelectric power plant",
         "Search eg: Analog electronics books",
-        "Search eg: Fourier transform intution",
+        "Search eg: Fourier transform",
+        "Search eg: Synchronizing generator to grid",
+        "Search eg: Relay working principle",
+        "Search eg: Power system operation books",
+        "Search eg: PID controller tuning",
         "Search eg: Bode plot",
+        "Search eg: Grid blackout",
+        "Search eg: Armature reaction",
+        "Search eg: Transformer",
+        "Search eg: Transmission line science",
+        "Search eg: How electricity actually works",
+
+
       ];
       let shuffledSearches = [...exampleSearches];
 

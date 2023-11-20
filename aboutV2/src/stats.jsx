@@ -109,7 +109,9 @@ class BarChartComponent extends Component {
         <br /> 
         <h3>Resource Distribution Chart</h3>
         <p>
-          The above is a chart of the number of resources available for each subject. The data is fetched from the database and is updated each time you refresh this page.
+          The below is a chart of the number of resources available for each subject in our website database. 
+          
+          The data is fetched from the database and is updated each time you refresh this page.
         </p>
         <SimpleBarChart data={this.state.data} options={this.state.options} />
       </div>
